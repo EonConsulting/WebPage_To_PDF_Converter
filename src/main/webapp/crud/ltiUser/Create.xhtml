@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLtiUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_userId}" for="userId" />
+                    <h:inputText id="userId" value="#{ltiUserController.selected.userId}" title="#{bundle.CreateLtiUserTitle_userId}" required="true" requiredMessage="#{bundle.CreateLtiUserRequiredMessage_userId}"/>
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_userSha256}" for="userSha256" />
+                    <h:inputText id="userSha256" value="#{ltiUserController.selected.userSha256}" title="#{bundle.CreateLtiUserTitle_userSha256}" required="true" requiredMessage="#{bundle.CreateLtiUserRequiredMessage_userSha256}"/>
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_userKey}" for="userKey" />
+                    <h:inputTextarea rows="4" cols="30" id="userKey" value="#{ltiUserController.selected.userKey}" title="#{bundle.CreateLtiUserTitle_userKey}" required="true" requiredMessage="#{bundle.CreateLtiUserRequiredMessage_userKey}"/>
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_profileId}" for="profileId" />
+                    <h:inputText id="profileId" value="#{ltiUserController.selected.profileId}" title="#{bundle.CreateLtiUserTitle_profileId}" />
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_displayname}" for="displayname" />
+                    <h:inputTextarea rows="4" cols="30" id="displayname" value="#{ltiUserController.selected.displayname}" title="#{bundle.CreateLtiUserTitle_displayname}" />
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_email}" for="email" />
+                    <h:inputTextarea rows="4" cols="30" id="email" value="#{ltiUserController.selected.email}" title="#{bundle.CreateLtiUserTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_locale}" for="locale" />
+                    <h:inputText id="locale" value="#{ltiUserController.selected.locale}" title="#{bundle.CreateLtiUserTitle_locale}" />
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_subscribe}" for="subscribe" />
+                    <h:inputText id="subscribe" value="#{ltiUserController.selected.subscribe}" title="#{bundle.CreateLtiUserTitle_subscribe}" />
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_json}" for="json" />
+                    <h:inputTextarea rows="4" cols="30" id="json" value="#{ltiUserController.selected.json}" title="#{bundle.CreateLtiUserTitle_json}" />
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_loginAt}" for="loginAt" />
+                    <h:inputText id="loginAt" value="#{ltiUserController.selected.loginAt}" title="#{bundle.CreateLtiUserTitle_loginAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_entityVersion}" for="entityVersion" />
+                    <h:inputText id="entityVersion" value="#{ltiUserController.selected.entityVersion}" title="#{bundle.CreateLtiUserTitle_entityVersion}" required="true" requiredMessage="#{bundle.CreateLtiUserRequiredMessage_entityVersion}"/>
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{ltiUserController.selected.createdAt}" title="#{bundle.CreateLtiUserTitle_createdAt}" required="true" requiredMessage="#{bundle.CreateLtiUserRequiredMessage_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{ltiUserController.selected.updatedAt}" title="#{bundle.CreateLtiUserTitle_updatedAt}" required="true" requiredMessage="#{bundle.CreateLtiUserRequiredMessage_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateLtiUserLabel_keyId}" for="keyId" />
+                    <h:selectOneMenu id="keyId" value="#{ltiUserController.selected.keyId}" title="#{bundle.CreateLtiUserTitle_keyId}" required="true" requiredMessage="#{bundle.CreateLtiUserRequiredMessage_keyId}">
+                        <f:selectItems value="#{ltiKeyController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ltiUserController.create}" value="#{bundle.CreateLtiUserSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ltiUserController.prepareList}" value="#{bundle.CreateLtiUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLtiUserIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLtiKeyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_keyId}" for="keyId" />
+                    <h:inputText id="keyId" value="#{ltiKeyController.selected.keyId}" title="#{bundle.CreateLtiKeyTitle_keyId}" required="true" requiredMessage="#{bundle.CreateLtiKeyRequiredMessage_keyId}"/>
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_keySha256}" for="keySha256" />
+                    <h:inputText id="keySha256" value="#{ltiKeyController.selected.keySha256}" title="#{bundle.CreateLtiKeyTitle_keySha256}" required="true" requiredMessage="#{bundle.CreateLtiKeyRequiredMessage_keySha256}"/>
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_keyKey}" for="keyKey" />
+                    <h:inputTextarea rows="4" cols="30" id="keyKey" value="#{ltiKeyController.selected.keyKey}" title="#{bundle.CreateLtiKeyTitle_keyKey}" required="true" requiredMessage="#{bundle.CreateLtiKeyRequiredMessage_keyKey}"/>
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_secret}" for="secret" />
+                    <h:inputTextarea rows="4" cols="30" id="secret" value="#{ltiKeyController.selected.secret}" title="#{bundle.CreateLtiKeyTitle_secret}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_newSecret}" for="newSecret" />
+                    <h:inputTextarea rows="4" cols="30" id="newSecret" value="#{ltiKeyController.selected.newSecret}" title="#{bundle.CreateLtiKeyTitle_newSecret}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_ack}" for="ack" />
+                    <h:inputTextarea rows="4" cols="30" id="ack" value="#{ltiKeyController.selected.ack}" title="#{bundle.CreateLtiKeyTitle_ack}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_userId}" for="userId" />
+                    <h:inputText id="userId" value="#{ltiKeyController.selected.userId}" title="#{bundle.CreateLtiKeyTitle_userId}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_consumerProfile}" for="consumerProfile" />
+                    <h:inputTextarea rows="4" cols="30" id="consumerProfile" value="#{ltiKeyController.selected.consumerProfile}" title="#{bundle.CreateLtiKeyTitle_consumerProfile}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_newConsumerProfile}" for="newConsumerProfile" />
+                    <h:inputTextarea rows="4" cols="30" id="newConsumerProfile" value="#{ltiKeyController.selected.newConsumerProfile}" title="#{bundle.CreateLtiKeyTitle_newConsumerProfile}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_toolProfile}" for="toolProfile" />
+                    <h:inputTextarea rows="4" cols="30" id="toolProfile" value="#{ltiKeyController.selected.toolProfile}" title="#{bundle.CreateLtiKeyTitle_toolProfile}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_newToolProfile}" for="newToolProfile" />
+                    <h:inputTextarea rows="4" cols="30" id="newToolProfile" value="#{ltiKeyController.selected.newToolProfile}" title="#{bundle.CreateLtiKeyTitle_newToolProfile}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_json}" for="json" />
+                    <h:inputTextarea rows="4" cols="30" id="json" value="#{ltiKeyController.selected.json}" title="#{bundle.CreateLtiKeyTitle_json}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_settings}" for="settings" />
+                    <h:inputTextarea rows="4" cols="30" id="settings" value="#{ltiKeyController.selected.settings}" title="#{bundle.CreateLtiKeyTitle_settings}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_settingsUrl}" for="settingsUrl" />
+                    <h:inputTextarea rows="4" cols="30" id="settingsUrl" value="#{ltiKeyController.selected.settingsUrl}" title="#{bundle.CreateLtiKeyTitle_settingsUrl}" />
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_entityVersion}" for="entityVersion" />
+                    <h:inputText id="entityVersion" value="#{ltiKeyController.selected.entityVersion}" title="#{bundle.CreateLtiKeyTitle_entityVersion}" required="true" requiredMessage="#{bundle.CreateLtiKeyRequiredMessage_entityVersion}"/>
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{ltiKeyController.selected.createdAt}" title="#{bundle.CreateLtiKeyTitle_createdAt}" required="true" requiredMessage="#{bundle.CreateLtiKeyRequiredMessage_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateLtiKeyLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{ltiKeyController.selected.updatedAt}" title="#{bundle.CreateLtiKeyTitle_updatedAt}" required="true" requiredMessage="#{bundle.CreateLtiKeyRequiredMessage_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ltiKeyController.create}" value="#{bundle.CreateLtiKeySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ltiKeyController.prepareList}" value="#{bundle.CreateLtiKeyShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLtiKeyIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMailSentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMailSentEmpty}" rendered="#{mailSentController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{mailSentController.items.rowCount > 0}">
+                    <h:outputText value="#{mailSentController.pagination.pageFirstItem + 1}..#{mailSentController.pagination.pageLastItem + 1}/#{mailSentController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{mailSentController.previous}" value="#{bundle.Previous} #{mailSentController.pagination.pageSize}" rendered="#{mailSentController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{mailSentController.next}" value="#{bundle.Next} #{mailSentController.pagination.pageSize}" rendered="#{mailSentController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{mailSentController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_sentId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sentId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_subject}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subject}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_body}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.body}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_json}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.json}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_contextId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contextId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_linkId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.linkId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_userTo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userTo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMailSentTitle_userFrom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userFrom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{mailSentController.prepareView}" value="#{bundle.ListMailSentViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{mailSentController.prepareEdit}" value="#{bundle.ListMailSentEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{mailSentController.destroy}" value="#{bundle.ListMailSentDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{mailSentController.prepareCreate}" value="#{bundle.ListMailSentCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMailSentIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

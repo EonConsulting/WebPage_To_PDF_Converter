@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLtiMembershipTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLtiMembershipEmpty}" rendered="#{ltiMembershipController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ltiMembershipController.items.rowCount > 0}">
+                    <h:outputText value="#{ltiMembershipController.pagination.pageFirstItem + 1}..#{ltiMembershipController.pagination.pageLastItem + 1}/#{ltiMembershipController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ltiMembershipController.previous}" value="#{bundle.Previous} #{ltiMembershipController.pagination.pageSize}" rendered="#{ltiMembershipController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ltiMembershipController.next}" value="#{bundle.Next} #{ltiMembershipController.pagination.pageSize}" rendered="#{ltiMembershipController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ltiMembershipController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiMembershipTitle_membershipId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.membershipId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiMembershipTitle_role}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.role}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiMembershipTitle_roleOverride}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.roleOverride}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiMembershipTitle_entityVersion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.entityVersion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiMembershipTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiMembershipTitle_updatedAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updatedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiMembershipTitle_contextId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contextId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiMembershipTitle_userId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ltiMembershipController.prepareView}" value="#{bundle.ListLtiMembershipViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ltiMembershipController.prepareEdit}" value="#{bundle.ListLtiMembershipEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ltiMembershipController.destroy}" value="#{bundle.ListLtiMembershipDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ltiMembershipController.prepareCreate}" value="#{bundle.ListLtiMembershipCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLtiMembershipIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

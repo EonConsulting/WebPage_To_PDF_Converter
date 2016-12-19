@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLtiServiceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_serviceId}"/>
+                    <h:outputText value="#{ltiServiceController.selected.serviceId}" title="#{bundle.ViewLtiServiceTitle_serviceId}"/>
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_serviceSha256}"/>
+                    <h:outputText value="#{ltiServiceController.selected.serviceSha256}" title="#{bundle.ViewLtiServiceTitle_serviceSha256}"/>
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_serviceKey}"/>
+                    <h:outputText value="#{ltiServiceController.selected.serviceKey}" title="#{bundle.ViewLtiServiceTitle_serviceKey}"/>
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_format}"/>
+                    <h:outputText value="#{ltiServiceController.selected.format}" title="#{bundle.ViewLtiServiceTitle_format}"/>
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_json}"/>
+                    <h:outputText value="#{ltiServiceController.selected.json}" title="#{bundle.ViewLtiServiceTitle_json}"/>
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_entityVersion}"/>
+                    <h:outputText value="#{ltiServiceController.selected.entityVersion}" title="#{bundle.ViewLtiServiceTitle_entityVersion}"/>
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_createdAt}"/>
+                    <h:outputText value="#{ltiServiceController.selected.createdAt}" title="#{bundle.ViewLtiServiceTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_updatedAt}"/>
+                    <h:outputText value="#{ltiServiceController.selected.updatedAt}" title="#{bundle.ViewLtiServiceTitle_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLtiServiceLabel_keyId}"/>
+                    <h:outputText value="#{ltiServiceController.selected.keyId}" title="#{bundle.ViewLtiServiceTitle_keyId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ltiServiceController.destroyAndView}" value="#{bundle.ViewLtiServiceDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLtiServiceEditLink}"/>
+                <br />
+                <h:commandLink action="#{ltiServiceController.prepareCreate}" value="#{bundle.ViewLtiServiceCreateLink}" />
+                <br />
+                <h:commandLink action="#{ltiServiceController.prepareList}" value="#{bundle.ViewLtiServiceShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLtiServiceIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

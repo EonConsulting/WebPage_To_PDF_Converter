@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLtiUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_userId}"/>
+                    <h:outputText value="#{ltiUserController.selected.userId}" title="#{bundle.ViewLtiUserTitle_userId}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_userSha256}"/>
+                    <h:outputText value="#{ltiUserController.selected.userSha256}" title="#{bundle.ViewLtiUserTitle_userSha256}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_userKey}"/>
+                    <h:outputText value="#{ltiUserController.selected.userKey}" title="#{bundle.ViewLtiUserTitle_userKey}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_profileId}"/>
+                    <h:outputText value="#{ltiUserController.selected.profileId}" title="#{bundle.ViewLtiUserTitle_profileId}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_displayname}"/>
+                    <h:outputText value="#{ltiUserController.selected.displayname}" title="#{bundle.ViewLtiUserTitle_displayname}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_email}"/>
+                    <h:outputText value="#{ltiUserController.selected.email}" title="#{bundle.ViewLtiUserTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_locale}"/>
+                    <h:outputText value="#{ltiUserController.selected.locale}" title="#{bundle.ViewLtiUserTitle_locale}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_subscribe}"/>
+                    <h:outputText value="#{ltiUserController.selected.subscribe}" title="#{bundle.ViewLtiUserTitle_subscribe}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_json}"/>
+                    <h:outputText value="#{ltiUserController.selected.json}" title="#{bundle.ViewLtiUserTitle_json}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_loginAt}"/>
+                    <h:outputText value="#{ltiUserController.selected.loginAt}" title="#{bundle.ViewLtiUserTitle_loginAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_entityVersion}"/>
+                    <h:outputText value="#{ltiUserController.selected.entityVersion}" title="#{bundle.ViewLtiUserTitle_entityVersion}"/>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_createdAt}"/>
+                    <h:outputText value="#{ltiUserController.selected.createdAt}" title="#{bundle.ViewLtiUserTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_updatedAt}"/>
+                    <h:outputText value="#{ltiUserController.selected.updatedAt}" title="#{bundle.ViewLtiUserTitle_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLtiUserLabel_keyId}"/>
+                    <h:outputText value="#{ltiUserController.selected.keyId}" title="#{bundle.ViewLtiUserTitle_keyId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ltiUserController.destroyAndView}" value="#{bundle.ViewLtiUserDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLtiUserEditLink}"/>
+                <br />
+                <h:commandLink action="#{ltiUserController.prepareCreate}" value="#{bundle.ViewLtiUserCreateLink}" />
+                <br />
+                <h:commandLink action="#{ltiUserController.prepareList}" value="#{bundle.ViewLtiUserShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLtiUserIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

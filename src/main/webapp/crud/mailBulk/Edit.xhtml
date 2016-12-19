@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMailBulkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMailBulkLabel_bulkId}" for="bulkId" />
+                    <h:inputText id="bulkId" value="#{mailBulkController.selected.bulkId}" title="#{bundle.EditMailBulkTitle_bulkId}" required="true" requiredMessage="#{bundle.EditMailBulkRequiredMessage_bulkId}"/>
+                    <h:outputLabel value="#{bundle.EditMailBulkLabel_subject}" for="subject" />
+                    <h:inputText id="subject" value="#{mailBulkController.selected.subject}" title="#{bundle.EditMailBulkTitle_subject}" />
+                    <h:outputLabel value="#{bundle.EditMailBulkLabel_body}" for="body" />
+                    <h:inputTextarea rows="4" cols="30" id="body" value="#{mailBulkController.selected.body}" title="#{bundle.EditMailBulkTitle_body}" />
+                    <h:outputLabel value="#{bundle.EditMailBulkLabel_json}" for="json" />
+                    <h:inputTextarea rows="4" cols="30" id="json" value="#{mailBulkController.selected.json}" title="#{bundle.EditMailBulkTitle_json}" />
+                    <h:outputLabel value="#{bundle.EditMailBulkLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{mailBulkController.selected.createdAt}" title="#{bundle.EditMailBulkTitle_createdAt}" required="true" requiredMessage="#{bundle.EditMailBulkRequiredMessage_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMailBulkLabel_contextId}" for="contextId" />
+                    <h:selectOneMenu id="contextId" value="#{mailBulkController.selected.contextId}" title="#{bundle.EditMailBulkTitle_contextId}" required="true" requiredMessage="#{bundle.EditMailBulkRequiredMessage_contextId}">
+                        <f:selectItems value="#{ltiContextController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMailBulkLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{mailBulkController.selected.userId}" title="#{bundle.EditMailBulkTitle_userId}" required="true" requiredMessage="#{bundle.EditMailBulkRequiredMessage_userId}">
+                        <f:selectItems value="#{ltiUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{mailBulkController.update}" value="#{bundle.EditMailBulkSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMailBulkViewLink}"/>
+                <br />
+                <h:commandLink action="#{mailBulkController.prepareList}" value="#{bundle.EditMailBulkShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMailBulkIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

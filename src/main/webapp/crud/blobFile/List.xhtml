@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBlobFileTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBlobFileEmpty}" rendered="#{blobFileController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{blobFileController.items.rowCount > 0}">
+                    <h:outputText value="#{blobFileController.pagination.pageFirstItem + 1}..#{blobFileController.pagination.pageLastItem + 1}/#{blobFileController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{blobFileController.previous}" value="#{bundle.Previous} #{blobFileController.pagination.pageSize}" rendered="#{blobFileController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{blobFileController.next}" value="#{bundle.Next} #{blobFileController.pagination.pageSize}" rendered="#{blobFileController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{blobFileController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_fileId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fileId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_fileSha256}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fileSha256}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_fileName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fileName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_deleted}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deleted}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_contenttype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contenttype}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_path}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.path}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_content}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.content}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_json}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.json}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_accessedAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.accessedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBlobFileTitle_contextId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contextId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{blobFileController.prepareView}" value="#{bundle.ListBlobFileViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{blobFileController.prepareEdit}" value="#{bundle.ListBlobFileEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{blobFileController.destroy}" value="#{bundle.ListBlobFileDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{blobFileController.prepareCreate}" value="#{bundle.ListBlobFileCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListBlobFileIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

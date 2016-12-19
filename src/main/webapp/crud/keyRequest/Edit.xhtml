@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditKeyRequestTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_requestId}" for="requestId" />
+                    <h:inputText id="requestId" value="#{keyRequestController.selected.requestId}" title="#{bundle.EditKeyRequestTitle_requestId}" required="true" requiredMessage="#{bundle.EditKeyRequestRequiredMessage_requestId}"/>
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{keyRequestController.selected.title}" title="#{bundle.EditKeyRequestTitle_title}" required="true" requiredMessage="#{bundle.EditKeyRequestRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_notes}" for="notes" />
+                    <h:inputTextarea rows="4" cols="30" id="notes" value="#{keyRequestController.selected.notes}" title="#{bundle.EditKeyRequestTitle_notes}" />
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_admin}" for="admin" />
+                    <h:inputTextarea rows="4" cols="30" id="admin" value="#{keyRequestController.selected.admin}" title="#{bundle.EditKeyRequestTitle_admin}" />
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_state}" for="state" />
+                    <h:inputText id="state" value="#{keyRequestController.selected.state}" title="#{bundle.EditKeyRequestTitle_state}" />
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_lti}" for="lti" />
+                    <h:inputText id="lti" value="#{keyRequestController.selected.lti}" title="#{bundle.EditKeyRequestTitle_lti}" />
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_json}" for="json" />
+                    <h:inputTextarea rows="4" cols="30" id="json" value="#{keyRequestController.selected.json}" title="#{bundle.EditKeyRequestTitle_json}" />
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{keyRequestController.selected.createdAt}" title="#{bundle.EditKeyRequestTitle_createdAt}" required="true" requiredMessage="#{bundle.EditKeyRequestRequiredMessage_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{keyRequestController.selected.updatedAt}" title="#{bundle.EditKeyRequestTitle_updatedAt}" required="true" requiredMessage="#{bundle.EditKeyRequestRequiredMessage_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditKeyRequestLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{keyRequestController.selected.userId}" title="#{bundle.EditKeyRequestTitle_userId}" required="true" requiredMessage="#{bundle.EditKeyRequestRequiredMessage_userId}">
+                        <f:selectItems value="#{ltiUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{keyRequestController.update}" value="#{bundle.EditKeyRequestSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditKeyRequestViewLink}"/>
+                <br />
+                <h:commandLink action="#{keyRequestController.prepareList}" value="#{bundle.EditKeyRequestShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditKeyRequestIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

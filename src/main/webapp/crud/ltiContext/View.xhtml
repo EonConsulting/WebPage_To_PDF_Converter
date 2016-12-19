@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLtiContextTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_contextId}"/>
+                    <h:outputText value="#{ltiContextController.selected.contextId}" title="#{bundle.ViewLtiContextTitle_contextId}"/>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_contextSha256}"/>
+                    <h:outputText value="#{ltiContextController.selected.contextSha256}" title="#{bundle.ViewLtiContextTitle_contextSha256}"/>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_contextKey}"/>
+                    <h:outputText value="#{ltiContextController.selected.contextKey}" title="#{bundle.ViewLtiContextTitle_contextKey}"/>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_title}"/>
+                    <h:outputText value="#{ltiContextController.selected.title}" title="#{bundle.ViewLtiContextTitle_title}"/>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_json}"/>
+                    <h:outputText value="#{ltiContextController.selected.json}" title="#{bundle.ViewLtiContextTitle_json}"/>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_settings}"/>
+                    <h:outputText value="#{ltiContextController.selected.settings}" title="#{bundle.ViewLtiContextTitle_settings}"/>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_settingsUrl}"/>
+                    <h:outputText value="#{ltiContextController.selected.settingsUrl}" title="#{bundle.ViewLtiContextTitle_settingsUrl}"/>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_entityVersion}"/>
+                    <h:outputText value="#{ltiContextController.selected.entityVersion}" title="#{bundle.ViewLtiContextTitle_entityVersion}"/>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_createdAt}"/>
+                    <h:outputText value="#{ltiContextController.selected.createdAt}" title="#{bundle.ViewLtiContextTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_updatedAt}"/>
+                    <h:outputText value="#{ltiContextController.selected.updatedAt}" title="#{bundle.ViewLtiContextTitle_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLtiContextLabel_keyId}"/>
+                    <h:outputText value="#{ltiContextController.selected.keyId}" title="#{bundle.ViewLtiContextTitle_keyId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ltiContextController.destroyAndView}" value="#{bundle.ViewLtiContextDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLtiContextEditLink}"/>
+                <br />
+                <h:commandLink action="#{ltiContextController.prepareCreate}" value="#{bundle.ViewLtiContextCreateLink}" />
+                <br />
+                <h:commandLink action="#{ltiContextController.prepareList}" value="#{bundle.ViewLtiContextShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLtiContextIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

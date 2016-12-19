@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBlobFileTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_fileId}"/>
+                    <h:outputText value="#{blobFileController.selected.fileId}" title="#{bundle.ViewBlobFileTitle_fileId}"/>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_fileSha256}"/>
+                    <h:outputText value="#{blobFileController.selected.fileSha256}" title="#{bundle.ViewBlobFileTitle_fileSha256}"/>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_fileName}"/>
+                    <h:outputText value="#{blobFileController.selected.fileName}" title="#{bundle.ViewBlobFileTitle_fileName}"/>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_deleted}"/>
+                    <h:outputText value="#{blobFileController.selected.deleted}" title="#{bundle.ViewBlobFileTitle_deleted}"/>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_contenttype}"/>
+                    <h:outputText value="#{blobFileController.selected.contenttype}" title="#{bundle.ViewBlobFileTitle_contenttype}"/>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_path}"/>
+                    <h:outputText value="#{blobFileController.selected.path}" title="#{bundle.ViewBlobFileTitle_path}"/>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_content}"/>
+                    <h:outputText value="#{blobFileController.selected.content}" title="#{bundle.ViewBlobFileTitle_content}"/>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_json}"/>
+                    <h:outputText value="#{blobFileController.selected.json}" title="#{bundle.ViewBlobFileTitle_json}"/>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_createdAt}"/>
+                    <h:outputText value="#{blobFileController.selected.createdAt}" title="#{bundle.ViewBlobFileTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_accessedAt}"/>
+                    <h:outputText value="#{blobFileController.selected.accessedAt}" title="#{bundle.ViewBlobFileTitle_accessedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBlobFileLabel_contextId}"/>
+                    <h:outputText value="#{blobFileController.selected.contextId}" title="#{bundle.ViewBlobFileTitle_contextId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{blobFileController.destroyAndView}" value="#{bundle.ViewBlobFileDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBlobFileEditLink}"/>
+                <br />
+                <h:commandLink action="#{blobFileController.prepareCreate}" value="#{bundle.ViewBlobFileCreateLink}" />
+                <br />
+                <h:commandLink action="#{blobFileController.prepareList}" value="#{bundle.ViewBlobFileShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBlobFileIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

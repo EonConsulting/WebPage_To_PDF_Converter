@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListKeyRequestTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListKeyRequestEmpty}" rendered="#{keyRequestController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{keyRequestController.items.rowCount > 0}">
+                    <h:outputText value="#{keyRequestController.pagination.pageFirstItem + 1}..#{keyRequestController.pagination.pageLastItem + 1}/#{keyRequestController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{keyRequestController.previous}" value="#{bundle.Previous} #{keyRequestController.pagination.pageSize}" rendered="#{keyRequestController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{keyRequestController.next}" value="#{bundle.Next} #{keyRequestController.pagination.pageSize}" rendered="#{keyRequestController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{keyRequestController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_requestId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.requestId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_notes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_admin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.admin}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_state}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.state}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_lti}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lti}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_json}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.json}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_updatedAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updatedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListKeyRequestTitle_userId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{keyRequestController.prepareView}" value="#{bundle.ListKeyRequestViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{keyRequestController.prepareEdit}" value="#{bundle.ListKeyRequestEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{keyRequestController.destroy}" value="#{bundle.ListKeyRequestDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{keyRequestController.prepareCreate}" value="#{bundle.ListKeyRequestCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListKeyRequestIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

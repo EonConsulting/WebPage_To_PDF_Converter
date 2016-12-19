@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLmsPluginsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLmsPluginsLabel_pluginId}"/>
+                    <h:outputText value="#{lmsPluginsController.selected.pluginId}" title="#{bundle.ViewLmsPluginsTitle_pluginId}"/>
+                    <h:outputText value="#{bundle.ViewLmsPluginsLabel_pluginPath}"/>
+                    <h:outputText value="#{lmsPluginsController.selected.pluginPath}" title="#{bundle.ViewLmsPluginsTitle_pluginPath}"/>
+                    <h:outputText value="#{bundle.ViewLmsPluginsLabel_version}"/>
+                    <h:outputText value="#{lmsPluginsController.selected.version}" title="#{bundle.ViewLmsPluginsTitle_version}"/>
+                    <h:outputText value="#{bundle.ViewLmsPluginsLabel_title}"/>
+                    <h:outputText value="#{lmsPluginsController.selected.title}" title="#{bundle.ViewLmsPluginsTitle_title}"/>
+                    <h:outputText value="#{bundle.ViewLmsPluginsLabel_json}"/>
+                    <h:outputText value="#{lmsPluginsController.selected.json}" title="#{bundle.ViewLmsPluginsTitle_json}"/>
+                    <h:outputText value="#{bundle.ViewLmsPluginsLabel_createdAt}"/>
+                    <h:outputText value="#{lmsPluginsController.selected.createdAt}" title="#{bundle.ViewLmsPluginsTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLmsPluginsLabel_updatedAt}"/>
+                    <h:outputText value="#{lmsPluginsController.selected.updatedAt}" title="#{bundle.ViewLmsPluginsTitle_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{lmsPluginsController.destroyAndView}" value="#{bundle.ViewLmsPluginsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLmsPluginsEditLink}"/>
+                <br />
+                <h:commandLink action="#{lmsPluginsController.prepareCreate}" value="#{bundle.ViewLmsPluginsCreateLink}" />
+                <br />
+                <h:commandLink action="#{lmsPluginsController.prepareList}" value="#{bundle.ViewLmsPluginsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLmsPluginsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

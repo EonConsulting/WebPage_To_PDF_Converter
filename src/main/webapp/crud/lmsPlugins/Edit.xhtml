@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLmsPluginsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditLmsPluginsLabel_pluginId}" for="pluginId" />
+                    <h:inputText id="pluginId" value="#{lmsPluginsController.selected.pluginId}" title="#{bundle.EditLmsPluginsTitle_pluginId}" required="true" requiredMessage="#{bundle.EditLmsPluginsRequiredMessage_pluginId}"/>
+                    <h:outputLabel value="#{bundle.EditLmsPluginsLabel_pluginPath}" for="pluginPath" />
+                    <h:inputText id="pluginPath" value="#{lmsPluginsController.selected.pluginPath}" title="#{bundle.EditLmsPluginsTitle_pluginPath}" required="true" requiredMessage="#{bundle.EditLmsPluginsRequiredMessage_pluginPath}"/>
+                    <h:outputLabel value="#{bundle.EditLmsPluginsLabel_version}" for="version" />
+                    <h:inputText id="version" value="#{lmsPluginsController.selected.version}" title="#{bundle.EditLmsPluginsTitle_version}" required="true" requiredMessage="#{bundle.EditLmsPluginsRequiredMessage_version}"/>
+                    <h:outputLabel value="#{bundle.EditLmsPluginsLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{lmsPluginsController.selected.title}" title="#{bundle.EditLmsPluginsTitle_title}" />
+                    <h:outputLabel value="#{bundle.EditLmsPluginsLabel_json}" for="json" />
+                    <h:inputTextarea rows="4" cols="30" id="json" value="#{lmsPluginsController.selected.json}" title="#{bundle.EditLmsPluginsTitle_json}" />
+                    <h:outputLabel value="#{bundle.EditLmsPluginsLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{lmsPluginsController.selected.createdAt}" title="#{bundle.EditLmsPluginsTitle_createdAt}" required="true" requiredMessage="#{bundle.EditLmsPluginsRequiredMessage_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditLmsPluginsLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{lmsPluginsController.selected.updatedAt}" title="#{bundle.EditLmsPluginsTitle_updatedAt}" required="true" requiredMessage="#{bundle.EditLmsPluginsRequiredMessage_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{lmsPluginsController.update}" value="#{bundle.EditLmsPluginsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLmsPluginsViewLink}"/>
+                <br />
+                <h:commandLink action="#{lmsPluginsController.prepareList}" value="#{bundle.EditLmsPluginsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLmsPluginsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

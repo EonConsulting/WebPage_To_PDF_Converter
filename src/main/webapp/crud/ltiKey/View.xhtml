@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLtiKeyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_keyId}"/>
+                    <h:outputText value="#{ltiKeyController.selected.keyId}" title="#{bundle.ViewLtiKeyTitle_keyId}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_keySha256}"/>
+                    <h:outputText value="#{ltiKeyController.selected.keySha256}" title="#{bundle.ViewLtiKeyTitle_keySha256}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_keyKey}"/>
+                    <h:outputText value="#{ltiKeyController.selected.keyKey}" title="#{bundle.ViewLtiKeyTitle_keyKey}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_secret}"/>
+                    <h:outputText value="#{ltiKeyController.selected.secret}" title="#{bundle.ViewLtiKeyTitle_secret}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_newSecret}"/>
+                    <h:outputText value="#{ltiKeyController.selected.newSecret}" title="#{bundle.ViewLtiKeyTitle_newSecret}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_ack}"/>
+                    <h:outputText value="#{ltiKeyController.selected.ack}" title="#{bundle.ViewLtiKeyTitle_ack}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_userId}"/>
+                    <h:outputText value="#{ltiKeyController.selected.userId}" title="#{bundle.ViewLtiKeyTitle_userId}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_consumerProfile}"/>
+                    <h:outputText value="#{ltiKeyController.selected.consumerProfile}" title="#{bundle.ViewLtiKeyTitle_consumerProfile}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_newConsumerProfile}"/>
+                    <h:outputText value="#{ltiKeyController.selected.newConsumerProfile}" title="#{bundle.ViewLtiKeyTitle_newConsumerProfile}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_toolProfile}"/>
+                    <h:outputText value="#{ltiKeyController.selected.toolProfile}" title="#{bundle.ViewLtiKeyTitle_toolProfile}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_newToolProfile}"/>
+                    <h:outputText value="#{ltiKeyController.selected.newToolProfile}" title="#{bundle.ViewLtiKeyTitle_newToolProfile}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_json}"/>
+                    <h:outputText value="#{ltiKeyController.selected.json}" title="#{bundle.ViewLtiKeyTitle_json}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_settings}"/>
+                    <h:outputText value="#{ltiKeyController.selected.settings}" title="#{bundle.ViewLtiKeyTitle_settings}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_settingsUrl}"/>
+                    <h:outputText value="#{ltiKeyController.selected.settingsUrl}" title="#{bundle.ViewLtiKeyTitle_settingsUrl}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_entityVersion}"/>
+                    <h:outputText value="#{ltiKeyController.selected.entityVersion}" title="#{bundle.ViewLtiKeyTitle_entityVersion}"/>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_createdAt}"/>
+                    <h:outputText value="#{ltiKeyController.selected.createdAt}" title="#{bundle.ViewLtiKeyTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLtiKeyLabel_updatedAt}"/>
+                    <h:outputText value="#{ltiKeyController.selected.updatedAt}" title="#{bundle.ViewLtiKeyTitle_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ltiKeyController.destroyAndView}" value="#{bundle.ViewLtiKeyDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLtiKeyEditLink}"/>
+                <br />
+                <h:commandLink action="#{ltiKeyController.prepareCreate}" value="#{bundle.ViewLtiKeyCreateLink}" />
+                <br />
+                <h:commandLink action="#{ltiKeyController.prepareList}" value="#{bundle.ViewLtiKeyShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLtiKeyIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

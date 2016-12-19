@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLtiContextTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLtiContextEmpty}" rendered="#{ltiContextController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ltiContextController.items.rowCount > 0}">
+                    <h:outputText value="#{ltiContextController.pagination.pageFirstItem + 1}..#{ltiContextController.pagination.pageLastItem + 1}/#{ltiContextController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ltiContextController.previous}" value="#{bundle.Previous} #{ltiContextController.pagination.pageSize}" rendered="#{ltiContextController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ltiContextController.next}" value="#{bundle.Next} #{ltiContextController.pagination.pageSize}" rendered="#{ltiContextController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ltiContextController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_contextId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contextId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_contextSha256}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contextSha256}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_contextKey}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contextKey}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_json}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.json}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_settings}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.settings}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_settingsUrl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.settingsUrl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_entityVersion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.entityVersion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_updatedAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updatedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiContextTitle_keyId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.keyId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ltiContextController.prepareView}" value="#{bundle.ListLtiContextViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ltiContextController.prepareEdit}" value="#{bundle.ListLtiContextEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ltiContextController.destroy}" value="#{bundle.ListLtiContextDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ltiContextController.prepareCreate}" value="#{bundle.ListLtiContextCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLtiContextIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProfileTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProfileLabel_profileId}" for="profileId" />
+                    <h:inputText id="profileId" value="#{profileController.selected.profileId}" title="#{bundle.EditProfileTitle_profileId}" required="true" requiredMessage="#{bundle.EditProfileRequiredMessage_profileId}"/>
+                    <h:outputLabel value="#{bundle.EditProfileLabel_profileSha256}" for="profileSha256" />
+                    <h:inputText id="profileSha256" value="#{profileController.selected.profileSha256}" title="#{bundle.EditProfileTitle_profileSha256}" required="true" requiredMessage="#{bundle.EditProfileRequiredMessage_profileSha256}"/>
+                    <h:outputLabel value="#{bundle.EditProfileLabel_profileKey}" for="profileKey" />
+                    <h:inputTextarea rows="4" cols="30" id="profileKey" value="#{profileController.selected.profileKey}" title="#{bundle.EditProfileTitle_profileKey}" required="true" requiredMessage="#{bundle.EditProfileRequiredMessage_profileKey}"/>
+                    <h:outputLabel value="#{bundle.EditProfileLabel_keyId}" for="keyId" />
+                    <h:inputText id="keyId" value="#{profileController.selected.keyId}" title="#{bundle.EditProfileTitle_keyId}" required="true" requiredMessage="#{bundle.EditProfileRequiredMessage_keyId}"/>
+                    <h:outputLabel value="#{bundle.EditProfileLabel_displayname}" for="displayname" />
+                    <h:inputTextarea rows="4" cols="30" id="displayname" value="#{profileController.selected.displayname}" title="#{bundle.EditProfileTitle_displayname}" />
+                    <h:outputLabel value="#{bundle.EditProfileLabel_email}" for="email" />
+                    <h:inputTextarea rows="4" cols="30" id="email" value="#{profileController.selected.email}" title="#{bundle.EditProfileTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditProfileLabel_locale}" for="locale" />
+                    <h:inputText id="locale" value="#{profileController.selected.locale}" title="#{bundle.EditProfileTitle_locale}" />
+                    <h:outputLabel value="#{bundle.EditProfileLabel_subscribe}" for="subscribe" />
+                    <h:inputText id="subscribe" value="#{profileController.selected.subscribe}" title="#{bundle.EditProfileTitle_subscribe}" />
+                    <h:outputLabel value="#{bundle.EditProfileLabel_json}" for="json" />
+                    <h:inputTextarea rows="4" cols="30" id="json" value="#{profileController.selected.json}" title="#{bundle.EditProfileTitle_json}" />
+                    <h:outputLabel value="#{bundle.EditProfileLabel_loginAt}" for="loginAt" />
+                    <h:inputText id="loginAt" value="#{profileController.selected.loginAt}" title="#{bundle.EditProfileTitle_loginAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditProfileLabel_entityVersion}" for="entityVersion" />
+                    <h:inputText id="entityVersion" value="#{profileController.selected.entityVersion}" title="#{bundle.EditProfileTitle_entityVersion}" required="true" requiredMessage="#{bundle.EditProfileRequiredMessage_entityVersion}"/>
+                    <h:outputLabel value="#{bundle.EditProfileLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{profileController.selected.createdAt}" title="#{bundle.EditProfileTitle_createdAt}" required="true" requiredMessage="#{bundle.EditProfileRequiredMessage_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditProfileLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{profileController.selected.updatedAt}" title="#{bundle.EditProfileTitle_updatedAt}" required="true" requiredMessage="#{bundle.EditProfileRequiredMessage_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{profileController.update}" value="#{bundle.EditProfileSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProfileViewLink}"/>
+                <br />
+                <h:commandLink action="#{profileController.prepareList}" value="#{bundle.EditProfileShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProfileIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLtiLinkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLtiLinkEmpty}" rendered="#{ltiLinkController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ltiLinkController.items.rowCount > 0}">
+                    <h:outputText value="#{ltiLinkController.pagination.pageFirstItem + 1}..#{ltiLinkController.pagination.pageLastItem + 1}/#{ltiLinkController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ltiLinkController.previous}" value="#{bundle.Previous} #{ltiLinkController.pagination.pageSize}" rendered="#{ltiLinkController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ltiLinkController.next}" value="#{bundle.Next} #{ltiLinkController.pagination.pageSize}" rendered="#{ltiLinkController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ltiLinkController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_linkId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.linkId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_linkSha256}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.linkSha256}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_linkKey}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.linkKey}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.title}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_json}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.json}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_settings}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.settings}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_settingsUrl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.settingsUrl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_entityVersion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.entityVersion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_updatedAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updatedAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLtiLinkTitle_contextId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contextId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ltiLinkController.prepareView}" value="#{bundle.ListLtiLinkViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ltiLinkController.prepareEdit}" value="#{bundle.ListLtiLinkEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ltiLinkController.destroy}" value="#{bundle.ListLtiLinkDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ltiLinkController.prepareCreate}" value="#{bundle.ListLtiLinkCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLtiLinkIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

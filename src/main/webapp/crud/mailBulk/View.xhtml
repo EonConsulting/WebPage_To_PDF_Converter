@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMailBulkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMailBulkLabel_bulkId}"/>
+                    <h:outputText value="#{mailBulkController.selected.bulkId}" title="#{bundle.ViewMailBulkTitle_bulkId}"/>
+                    <h:outputText value="#{bundle.ViewMailBulkLabel_subject}"/>
+                    <h:outputText value="#{mailBulkController.selected.subject}" title="#{bundle.ViewMailBulkTitle_subject}"/>
+                    <h:outputText value="#{bundle.ViewMailBulkLabel_body}"/>
+                    <h:outputText value="#{mailBulkController.selected.body}" title="#{bundle.ViewMailBulkTitle_body}"/>
+                    <h:outputText value="#{bundle.ViewMailBulkLabel_json}"/>
+                    <h:outputText value="#{mailBulkController.selected.json}" title="#{bundle.ViewMailBulkTitle_json}"/>
+                    <h:outputText value="#{bundle.ViewMailBulkLabel_createdAt}"/>
+                    <h:outputText value="#{mailBulkController.selected.createdAt}" title="#{bundle.ViewMailBulkTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMailBulkLabel_contextId}"/>
+                    <h:outputText value="#{mailBulkController.selected.contextId}" title="#{bundle.ViewMailBulkTitle_contextId}"/>
+                    <h:outputText value="#{bundle.ViewMailBulkLabel_userId}"/>
+                    <h:outputText value="#{mailBulkController.selected.userId}" title="#{bundle.ViewMailBulkTitle_userId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{mailBulkController.destroyAndView}" value="#{bundle.ViewMailBulkDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMailBulkEditLink}"/>
+                <br />
+                <h:commandLink action="#{mailBulkController.prepareCreate}" value="#{bundle.ViewMailBulkCreateLink}" />
+                <br />
+                <h:commandLink action="#{mailBulkController.prepareList}" value="#{bundle.ViewMailBulkShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMailBulkIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
