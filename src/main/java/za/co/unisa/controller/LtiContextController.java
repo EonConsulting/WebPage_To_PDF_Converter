@@ -40,6 +40,10 @@ import javax.faces.model.SelectItem;
  * 
  * @author Mufaro Benedict
  * @author mbaka motale
+ * 
+ * The presence of this annotation on a class automatically registers the class with the runtime
+ * as a managed bean class. Classes must be scanned for the presence of this annotation at application
+ * startup, before any requests have been serviced.
  */
 @ManagedBean(name = "ltiContextController")
 @SessionScoped
@@ -53,7 +57,7 @@ public class LtiContextController implements Serializable {
     private int selectedItemIndex;
 
     /**
-     *
+     * constructor for the Lti Context 
      */
     public LtiContextController() {
     }

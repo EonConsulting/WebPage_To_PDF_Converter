@@ -43,6 +43,9 @@ import javax.faces.model.SelectItem;
  */
 @ManagedBean(name = "ltiResultController")
 @SessionScoped
+/**
+ * LtiResultController class handles the results and from the Lti requests 
+ */
 public class LtiResultController implements Serializable {
 
     private LtiResult current;
@@ -75,7 +78,7 @@ public class LtiResultController implements Serializable {
     }
 
     /**
-     *
+     * this 
      * @return
      */
     public PaginationHelper getPagination() {

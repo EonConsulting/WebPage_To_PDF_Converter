@@ -75,7 +75,7 @@ public class LmsPluginsController implements Serializable {
     }
 
     /**
-     *
+     *public abstract class PaginationHelper extends Object
      * @return
      */
     public PaginationHelper getPagination() {

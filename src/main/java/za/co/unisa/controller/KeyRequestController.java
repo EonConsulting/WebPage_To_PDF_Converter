@@ -41,6 +41,16 @@ import javax.faces.model.SelectItem;
  * @author Mufaro Benedict
  * @author mbaka motale
  */
+
+/**
+ * 
+ * Serializability of a class is enabled by the KeyRequestController.
+ * Classes that do not implement this interface will not have any of their state serialized or deserialized.
+ * All subtypes of a serializable class are themselves serializable. 
+ * The serialization interface has no methods or fields and serves only to 
+ * identify the semantics of being serializable.
+ * 
+ */
 @ManagedBean(name = "keyRequestController")
 @SessionScoped
 public class KeyRequestController implements Serializable {
@@ -59,7 +69,7 @@ public class KeyRequestController implements Serializable {
     }
 
     /**
-     *
+     * requests key for user 
      * @return
      */
     public KeyRequest getSelected() {
@@ -75,7 +85,7 @@ public class KeyRequestController implements Serializable {
     }
 
     /**
-     *
+     * Generates page numbering and ordering 
      * @return
      */
     public PaginationHelper getPagination() {
@@ -98,7 +108,8 @@ public class KeyRequestController implements Serializable {
 
     /**
      *
-     * @return
+     * @return a list of keys generated 
+     * 
      */
     public String prepareList() {
         recreateModel();

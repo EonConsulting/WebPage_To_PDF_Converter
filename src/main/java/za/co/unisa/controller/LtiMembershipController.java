@@ -53,14 +53,14 @@ public class LtiMembershipController implements Serializable {
     private int selectedItemIndex;
 
     /**
-     *
+     * controller that manages membership of users 
      */
     public LtiMembershipController() {
     }
 
     /**
      *
-     * @return
+     * @return the current membership 
      */
     public LtiMembership getSelected() {
         if (current == null) {
@@ -95,7 +95,7 @@ public class LtiMembershipController implements Serializable {
         }
         return pagination;
     }
-
+ 
     /**
      *
      * @return

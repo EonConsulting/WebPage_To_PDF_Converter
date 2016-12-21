@@ -41,6 +41,11 @@ import javax.faces.model.SelectItem;
  * @author Mufaro Benedict
  * @author mbaka motale
  */
+
+/**
+     *When this annotation, along with ManagedBean is found 
+     *on a class, the runtime must act as if a <managed-bean>
+     */
 @ManagedBean(name = "ltiKeyController")
 @SessionScoped
 public class LtiKeyController implements Serializable {
@@ -53,7 +58,8 @@ public class LtiKeyController implements Serializable {
     private int selectedItemIndex;
 
     /**
-     *
+     *When this annotation, along with ManagedBean is found 
+     *on a class, the runtime must act as if a <managed-bean>
      */
     public LtiKeyController() {
     }

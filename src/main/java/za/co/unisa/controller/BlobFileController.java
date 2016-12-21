@@ -53,14 +53,14 @@ public class BlobFileController implements Serializable {
     private int selectedItemIndex;
 
     /**
-     *
+     * constructor 
      */
     public BlobFileController() {
     }
 
     /**
      *
-     * @return
+     * @return   returns the selected picture 
      */
     public BlobFile getSelected() {
         if (current == null) {
@@ -76,7 +76,7 @@ public class BlobFileController implements Serializable {
 
     /**
      *
-     * @return
+     * @return the pages numbers 
      */
     public PaginationHelper getPagination() {
         if (pagination == null) {
@@ -98,7 +98,7 @@ public class BlobFileController implements Serializable {
 
     /**
      *
-     * @return
+     * @return returns a list of blob files
      */
     public String prepareList() {
         recreateModel();
@@ -107,7 +107,7 @@ public class BlobFileController implements Serializable {
 
     /**
      *
-     * @return
+     * @return 
      */
     public String prepareView() {
         current = (BlobFile) getItems().getRowData();
@@ -152,7 +152,7 @@ public class BlobFileController implements Serializable {
 
     /**
      *
-     * @return
+     * @return  a success or an error message when a file is updated 
      */
     public String update() {
         try {
@@ -167,7 +167,7 @@ public class BlobFileController implements Serializable {
 
     /**
      *
-     * @return
+     * @return re adjusts the page numbering when there is a delete file 
      */
     public String destroy() {
         current = (BlobFile) getItems().getRowData();
@@ -180,6 +180,7 @@ public class BlobFileController implements Serializable {
 
     /**
      *
+     * all items were removed - go back to list
      * @return
      */
     public String destroyAndView() {
@@ -240,7 +241,7 @@ public class BlobFileController implements Serializable {
 
     /**
      *
-     * @return
+     * @return next item on the list 
      */
     public String next() {
         getPagination().nextPage();
@@ -259,7 +260,7 @@ public class BlobFileController implements Serializable {
     }
 
     /**
-     *
+     * 
      * @return
      */
     public SelectItem[] getItemsAvailableSelectMany() {

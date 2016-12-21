@@ -44,7 +44,9 @@ import javax.faces.model.SelectItem;
 @ManagedBean(name = "ltiLinkController")
 @SessionScoped
 public class LtiLinkController implements Serializable {
-
+   /**
+     *public class LtiLink extends Object implements Serializable
+     */
     private LtiLink current;
     private DataModel items = null;
     @EJB
@@ -53,7 +55,7 @@ public class LtiLinkController implements Serializable {
     private int selectedItemIndex;
 
     /**
-     *
+     *public class LtiLink extends Object implements Serializable
      */
     public LtiLinkController() {
     }
