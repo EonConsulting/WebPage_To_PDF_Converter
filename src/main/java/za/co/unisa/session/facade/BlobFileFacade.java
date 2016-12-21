@@ -20,11 +20,18 @@ public class BlobFileFacade extends AbstractFacade<BlobFile> {
     @PersistenceContext(unitName = "za.co.unisa_tsugiJava_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public BlobFileFacade() {
         super(BlobFile.class);
     }

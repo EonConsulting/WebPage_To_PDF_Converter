@@ -1,3 +1,22 @@
+/*
+ * Copyright (c) 2016, University of South Africa and/or its affiliates. All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * This code is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License version 2 only, as
+ * published by the Free Software Foundation.
+ *
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+ * version 2 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * You should have received a copy of the GNU General Public License version
+ * 2 along with this work; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
 package za.co.unisa.controller;
 
 import za.co.unisa.entity.LtiUser;
@@ -18,6 +37,11 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
+/**
+ * 
+ * @author Mufaro Benedict
+ * @author mbaka motale
+ */
 @ManagedBean(name = "ltiUserController")
 @SessionScoped
 public class LtiUserController implements Serializable {
@@ -29,9 +53,16 @@ public class LtiUserController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    /**
+     *
+     */
     public LtiUserController() {
     }
 
+    /**
+     *
+     * @return
+     */
     public LtiUser getSelected() {
         if (current == null) {
             current = new LtiUser();
@@ -44,6 +75,10 @@ public class LtiUserController implements Serializable {
         return ejbFacade;
     }
 
+    /**
+     *
+     * @return
+     */
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -62,23 +97,39 @@ public class LtiUserController implements Serializable {
         return pagination;
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareList() {
         recreateModel();
         return "List";
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareView() {
         current = (LtiUser) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareCreate() {
         current = new LtiUser();
         selectedItemIndex = -1;
         return "Create";
     }
 
+    /**
+     *
+     * @return
+     */
     public String create() {
         try {
             getFacade().create(current);
@@ -90,12 +141,20 @@ public class LtiUserController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareEdit() {
         current = (LtiUser) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
+    /**
+     *
+     * @return
+     */
     public String update() {
         try {
             getFacade().edit(current);
@@ -107,6 +166,10 @@ public class LtiUserController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String destroy() {
         current = (LtiUser) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -116,6 +179,10 @@ public class LtiUserController implements Serializable {
         return "List";
     }
 
+    /**
+     *
+     * @return
+     */
     public String destroyAndView() {
         performDestroy();
         recreateModel();
@@ -153,6 +220,10 @@ public class LtiUserController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
@@ -168,29 +239,55 @@ public class LtiUserController implements Serializable {
         pagination = null;
     }
 
+    /**
+     *
+     * @return
+     */
     public String next() {
         getPagination().nextPage();
         recreateModel();
         return "List";
     }
 
+    /**
+     *
+     * @return
+     */
     public String previous() {
         getPagination().previousPage();
         recreateModel();
         return "List";
     }
 
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
 
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
+    /**
+     *
+     */
     @FacesConverter(forClass = LtiUser.class)
     public static class LtiUserControllerConverter implements Converter {
 
+        /**
+         *
+         * @param facesContext
+         * @param component
+         * @param value
+         * @return
+         */
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
@@ -213,6 +310,13 @@ public class LtiUserController implements Serializable {
             return sb.toString();
         }
 
+        /**
+         *
+         * @param facesContext
+         * @param component
+         * @param object
+         * @return
+         */
         @Override
         public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
             if (object == null) {
