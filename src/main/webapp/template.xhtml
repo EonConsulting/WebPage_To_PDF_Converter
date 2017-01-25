@@ -8,9 +8,43 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
+
+
+        <style>
+            .center {
+                text-align: right;
+            }
+
+            img{
+
+                width: 40px;
+                height: 40px;       
+            }
+
+
+        </style>
+
+
+
+        <script>
+            function doit() {
+                if (!window.print) {
+                    alert("You need NS4.x to use this print button!")
+                    return
+                }
+                window.print()
+            }
+        </script>
+
+
     </h:head>
 
     <h:body>
+
+        <div class="center">
+            <a href="javascript:doit()"><img src="images/print.png" style="margin-left: 55px;" class="btn btn-danger btn-xs" title="Print Page to PDF"/></a>
+        </div>
+
         <h1>
             <ui:insert name="title">Default Title</ui:insert>
         </h1>
